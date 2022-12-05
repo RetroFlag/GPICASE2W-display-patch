@@ -1,5 +1,5 @@
-# GPICASE2W-dispaly-patch
-GPICASE2W dispaly patch
+# GPICASE2W-display-patch
+GPICASE2W display patch
 
 ## 
 
