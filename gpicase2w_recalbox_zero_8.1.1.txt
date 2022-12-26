@@ -1,105 +1,58 @@
-# For more options and information see
-# http://www.raspberrypi.org/documentation/configuration/config-txt.md
-# Some settings may impact device functionality. See link above for details
+#############################################################
+# Boot loader configuration                                 #
+# This file can be modified to your needs                   #
+#############################################################
 
-# uncomment if you get no picture on HDMI for a default "safe" mode
-#hdmi_safe=1
-
-# uncomment this if your display has a black border of unused pixels visible
-# and your display can output without overscan
 disable_overscan=1
-
-# uncomment the following to adjust overscan. Use positive numbers if console
-# goes off screen, and negative if there is too much border
-#overscan_left=16
-#overscan_right=16
-#overscan_top=16
-#overscan_bottom=16
-
-# uncomment to force a console size. By default it will be display's size minus
-# overscan.
-#framebuffer_width=1280
-#framebuffer_height=720
-
-# uncomment if hdmi display is not detected and composite is being output
-#hdmi_force_hotplug=1
-
-# uncomment to force a specific HDMI mode (this will force VGA)
-#hdmi_group=1
-#hdmi_mode=1
-
-# uncomment to force a HDMI mode rather than DVI. This can make audio work in
-# DMT (computer monitor) modes
-#hdmi_drive=2
-
-# uncomment to increase signal to HDMI, if you have interference, blanking, or
-# no display
-#config_hdmi_boost=4
-
-# uncomment for composite PAL
-#sdtv_mode=2
-
-#uncomment to overclock the arm. 700 MHz is the default.
-
-# Uncomment some or all of these to enable the optional hardware interfaces
-#dtparam=i2c_arm=on
-#dtparam=i2s=on
-#dtparam=spi=on
-
-# Uncomment this to enable the lirc-rpi module
-#dtoverlay=lirc-rpi
-
-# Additional overlays and parameters are documented /boot/overlays/README
-
-# Enable audio (loads snd_bcm2835)
-dtparam=audio=on
-
-#config_hdmi_boost=0
-
-# force hdmi while the tv can take time before sending the signal on the hdmi output
-#hdmi_force_hotplug=1
-
-# uncomment for composite PAL
-#sdtv_mode=2
 
 # uncomment for lirc-rpi
 #dtoverlay=lirc-rpi
 
-# if you plug your tv at the same time as your rpi and that the rpi switches from the hdmi or give a low resolution because tv had no enough time to initialize it
-boot_delay=3
-
-# uncomment if you don't want the rainbow at startup
-disable_splash=1
-
-# default CEC name
-cec_osd_name=recalbox
-
-# Overclock
+# total amount of GPU memory
 gpu_mem_256=128
 gpu_mem_512=256
-gpu_mem_1024=512
 
-avoid_safe_mode=1
-
-kernel=zImage
-
-#dtparam=audio=on
-display_rotate=0
-dtoverlay=dpi24
-overscan_left=0
-overscan_right=0
-overscan_top=0
-overscan_bottom=0
+###########################
+# GPI Case                #
+###########################
+ 
+# Video 
+dtoverlay=dpi-pizero-gpicase 
+display_rotate=0 
+overscan_left=0 
+overscan_right=0 
+overscan_top=0 
+overscan_bottom=0 
 framebuffer_width=640
-framebuffer_height=480
-#framebuffer_depth=8
-enable_dpi_lcd=1
-display_default_lcd=1
-dpi_group=2
-dpi_mode=87
+framebuffer_height=480 
+enable_dpi_lcd=1 
+display_default_lcd=1 
+dpi_group=2 
+dpi_mode=87 
 dpi_output_format=0x00016
 #hdmi_timings=320 0 28 18 28 480 0 2 2 4 0 0 0 60 0 32000000 6
-hdmi_timings=640 0 20 1 20 480 0 1 1 2 0 0 0 60 0 19200000 1
-dtoverlay=pwm-2chan,pin=18,func=2,pin2=19,func2=2overscan_scale=0
+hdmi_timings=640 0 1 1 20 480 0 1 1 2 0 0 0 60 0 32000000 1
+ 
+# Audio 
+#dtoverlay=pwm-2chan,pin=18,func=2,pin2=19,func2=2 
+dtoverlay=pwm-audio-pizero-gpicase 
+disable_pvt=1 
+dtparam=audio=on 
+disable_audio_dither=1 
+audio_pwm_mode=2 
+ 
+# disable activity leds 
+dtparam=act_led_trigger=none 
+dtparam=act_led_activelow=on 
+ 
+# Pi0 stabilization 
+arm_freq=1000 
+gpu_freq=500 
+core_freq=500 
+sdram_freq=500 
+sdram_schmoo=0x02000020 
+over_voltage=6 (default) 
+sdram_over_voltage=2 
 
-audio_pwm_mode = 2
+# Shorten boot delay 
+boot_delay=1 
