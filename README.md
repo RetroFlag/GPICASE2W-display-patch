@@ -23,5 +23,5 @@ GPICASE2W display patch
 
 --------------------
 ### For zero2w + retropie
-1.download [GPiCase2Wpatch_retropie+zero2.zip](https://github.com/RetroFlag/GPICASE2W-display-patch/raw/main/GPiCase2Wpatch_retropie%2Bzero2.zip)
-2.Install the display patch according to the readme file instructions
+1. download [GPiCase2Wpatch_retropie+zero2.zip](https://github.com/RetroFlag/GPICASE2W-display-patch/raw/main/GPiCase2Wpatch_retropie%2Bzero2.zip)
+2. Install the display patch according to the readme file instructions
