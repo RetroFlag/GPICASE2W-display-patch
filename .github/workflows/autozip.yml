@@ -17,6 +17,13 @@ jobs:
  
       - name: Create Zip Archive
         run: zip -r GPiCase2Wpatch_retropie_zero2.zip GPiCase2Wpatch_retropie_zero2
+
+      - name: Get Version Number
+        id: tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 | awk -F. '{$NF = $NF + 1;} 1' OFS=. )
+          echo "::set-output name=tag::${TAG}"
+
  
       - name: Get Release Changelog
         id: changelog
@@ -29,8 +36,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag: ${{ github.sha }}
-          name: Release ${{ github.sha }}
+          tag: ${{ steps.tag.outputs.tag }}
+          name: Release ${{ steps.tag.outputs.tag }}
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
